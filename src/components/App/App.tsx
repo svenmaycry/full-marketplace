@@ -3,6 +3,17 @@ import Categories from '../Categories/Categories';
 import Header from '../Header/Header';
 import Sort from '../Sort/Sort';
 import PizzaBlock from '../PizzaBlock/PizzaBlock';
+import pizzas from '../../assets/pizzas.json';
+
+// type PizzaBlockProps = {
+//   id: string;
+//   title: string;
+//   price: number;
+//   imageUrl: string;
+//   sizes: number[];
+//   types: number[];
+//   rating: number;
+// };
 
 function App() {
   return (
@@ -16,9 +27,16 @@ function App() {
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
-            <PizzaBlock price={500} title="Моя" />
-            <PizzaBlock price={400} title="Сырная" />
-            <PizzaBlock price={300} title="Ещё пизза" />
+            {pizzas.map((item) => (
+              <PizzaBlock
+                price={item.price}
+                title={item.title}
+                imageUrl={item.imageUrl}
+                sizes={item.sizes}
+                types={item.types}
+                key={item.id}
+              />
+            ))}
           </div>
         </div>
       </div>
