@@ -3,7 +3,7 @@ import { useState } from 'react';
 const Sort = () => {
   const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(0);
-  const list = ['цене', 'популярности', 'алфавиту'];
+  const list = ['популярности', 'цене', 'алфавиту'];
   const sortName = list[activeItem];
 
   const onListItemClick = (idx: number) => {

@@ -1,10 +1,20 @@
 import { useState } from 'react';
 
-const PizzaBlock = ({ price, title, imageUrl, types, sizes }: any) => {
+const typeNames = ['тонкое', 'традиционное'];
+export interface Pizza {
+  id: number;
+  imageUrl: string;
+  title: string;
+  types: number[];
+  sizes: number[];
+  price: number;
+  category: number;
+  rating: number;
+}
+
+const PizzaBlock = ({ price, title, imageUrl, types, sizes }: Pizza) => {
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
-
-  const typeNames = ['тонкое', 'традиционное'];
 
   return (
     <div className="pizza-block">
@@ -12,7 +22,7 @@ const PizzaBlock = ({ price, title, imageUrl, types, sizes }: any) => {
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          {types.map((type: any, idx: number) => (
+          {types.map((type, idx) => (
             <li
               key={idx}
               onClick={() => setActiveType(idx)}
@@ -23,7 +33,7 @@ const PizzaBlock = ({ price, title, imageUrl, types, sizes }: any) => {
           ))}
         </ul>
         <ul>
-          {sizes.map((size: any, idx: number) => (
+          {sizes.map((size, idx) => (
             <li
               key={idx}
               onClick={() => setActiveSize(idx)}
