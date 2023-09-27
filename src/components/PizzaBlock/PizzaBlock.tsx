@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const typeNames = ['тонкое', 'традиционное'];
-export interface Pizza {
+export interface PizzaProps {
   id: number;
   imageUrl: string;
   title: string;
@@ -12,7 +12,7 @@ export interface Pizza {
   rating: number;
 }
 
-const PizzaBlock = ({ price, title, imageUrl, types, sizes }: Pizza) => {
+const PizzaBlock = ({ price, title, imageUrl, types, sizes }: PizzaProps) => {
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
 
