@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 import { Categories } from '../../components/Categories/Categories';
 import { Sort } from '../../components/Sort/Sort';
-import { Skeleton } from '../../components/PizzaBlock/Skeleton';
-import { PizzaBlock, PizzaProps } from '../../components/PizzaBlock/PizzaBlock';
+import { Skeleton } from '../../components/FlowerBlock/Skeleton';
+import {
+  FlowerBlock,
+  FlowerProps,
+} from '../../components/FlowerBlock/FlowerBlock';
 
 export const Home = () => {
   const [collections, setCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`https://6512cd7db8c6ce52b39641b2.mockapi.io/pizzas`)
+    fetch(`https://6512cd7db8c6ce52b39641b2.mockapi.io/flowers`)
       .then((res) => res.json())
       .then((arr) => {
         setCollections(arr);
@@ -27,12 +30,12 @@ export const Home = () => {
         <Categories />
         <Sort />
       </div>
-      <h2 className="content__title">Все пиццы</h2>
+      <h2 className="content__title">Все букеты</h2>
       <div className="content__items">
         {isLoading
           ? [...new Array(6)].map((_, idx) => <Skeleton key={idx} />)
-          : collections.map((item: PizzaProps) => (
-              <PizzaBlock
+          : collections.map((item: FlowerProps) => (
+              <FlowerBlock
                 price={item.price}
                 title={item.title}
                 imageUrl={item.imageUrl}

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-const typeNames = ['тонкое', 'традиционное'];
-export interface PizzaProps {
+const typeNames = ['самовывоз', 'доставка'];
+export interface FlowerProps {
   id: number;
   imageUrl: string;
   title: string;
@@ -12,21 +12,21 @@ export interface PizzaProps {
   rating: number;
 }
 
-export const PizzaBlock = ({
+export const FlowerBlock = ({
   price,
   title,
   imageUrl,
   types,
   sizes,
-}: PizzaProps) => {
+}: FlowerProps) => {
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
 
   return (
-    <div className="pizza-block">
-      <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
-      <h4 className="pizza-block__title">{title}</h4>
-      <div className="pizza-block__selector">
+    <div className="flower-block">
+      <img className="flower-block__image" src={imageUrl} alt="Flower" />
+      <h4 className="flower-block__title">{title}</h4>
+      <div className="flower-block__selector">
         <ul>
           {types.map((type, idx) => (
             <li
@@ -50,8 +50,8 @@ export const PizzaBlock = ({
           ))}
         </ul>
       </div>
-      <div className="pizza-block__bottom">
-        <div className="pizza-block__price">от {price} ₽</div>
+      <div className="flower-block__bottom">
+        <div className="flower-block__price">от {price} ₽</div>
         <button className="button button--outline button--add">
           <svg
             width={12}

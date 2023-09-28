@@ -1,0 +1,102 @@
+[
+   {
+     "id": 0,
+     "imageUrl": "https://megacvet24.ru/image/cache/catalog/15-rozovyh-pionov-6-280x280.jpg",
+     "title": "15 розовых пионов",
+     "types": [0, 1],
+     "sizes": [20, 30, 50],
+     "price": 2450,
+     "category": 0,
+     "rating": 4
+   },
+   {
+     "id": 1,
+     "imageUrl": "https://megacvet24.ru/image/cache/catalog/buket-golubaya-gortenziya-00-280x280.jpg",
+     "title": "Голубая Гортензия",
+     "types": [0],
+     "sizes": [20, 30],
+     "price": 3000,
+     "category": 0,
+     "rating": 6
+   },
+   {
+     "id": 2,
+     "imageUrl": "https://megacvet24.ru/image/cache/catalog/buket-alstromerii-s-evkaliptom-280x280.jpg",
+     "title": "Букет 'Альстромерии с Эвкалиптом'",
+     "types": [0],
+     "sizes": [20, 30],
+     "price": 1950,
+     "category": 1,
+     "rating": 4
+   },
+   {
+     "id": 3,
+     "imageUrl": "https://megacvet24.ru/image/cache/catalog/9-sirenevyh-gipsofil-9-280x280.jpg",
+     "title": "9 Сиреневых Гипсофил",
+     "types": [1],
+     "sizes": [20, 30, 50],
+     "price": 2300,
+     "category": 2,
+     "rating": 2
+   },
+   {
+     "id": 4,
+     "imageUrl": "https://megacvet24.ru/image/cache/catalog/7-ranunkulyusov-haynoy-280x280.jpg",
+     "title": "Букет 7 Розовых Ранункулюсов Хайной",
+     "types": [0, 1],
+     "sizes": [20, 30, 50],
+     "price": 3350,
+     "category": 3,
+     "rating": 8
+   },
+   {
+     "id": 5,
+     "imageUrl": "https://megacvet24.ru/image/cache/catalog/9-belykh-vostochnykh-liliy-999-280x280.jpg",
+     "title": "9 Белых Восточных Лилий",
+     "types": [0],
+     "sizes": [30, 50],
+     "price": 3700,
+     "category": 2,
+     "rating": 2
+   },
+   {
+     "id": 6,
+     "imageUrl": "https://megacvet24.ru/image/cache/catalog/21-raznocvetnaya-freziya-280x280.jpg",
+     "title": "35 Разноцветных Фрезий",
+     "types": [0, 1],
+     "sizes": [20, 30, 50],
+     "price": 1900,
+     "category": 1,
+     "rating": 9
+   },
+   {
+     "id": 7,
+     "imageUrl": "https://megacvet24.ru/image/cache/catalog/buket-proteya-v-serebre-280x280.jpeg",
+     "title": "Букет 'Протея В Серебре'",
+     "types": [0, 1],
+     "sizes": [20, 30, 50],
+     "price": 1850,
+     "category": 4,
+     "rating": 10
+   },
+   {
+     "id": 8,
+     "imageUrl": "https://megacvet24.ru/image/cache/catalog/7-malinovyh-gipsofil-280x280.jpg",
+     "title": "7 Малиновых Гипсофил",
+     "types": [0, 1],
+     "sizes": [20, 30, 50],
+     "price": 2500,
+     "category": 5,
+     "rating": 10
+   },
+   {
+     "id": 9,
+     "imageUrl": "https://megacvet24.ru/image/cache/catalog/buket-gvozdika-belaya-i-lavanda-280x280.jpg",
+     "title": "Букет 'Гвоздика Белая и Лаванда'",
+     "types": [0, 1],
+     "sizes": [20, 30, 50],
+     "price": 1780,
+     "category": 5,
+     "rating": 7
+   }
+ ]
