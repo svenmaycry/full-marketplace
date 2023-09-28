@@ -1,12 +1,12 @@
 import '../../scss/app.scss';
-import Categories from '../Categories/Categories';
-import Header from '../Header/Header';
-import Sort from '../Sort/Sort';
-import PizzaBlock, { PizzaProps } from '../PizzaBlock/PizzaBlock';
-import Skeleton from '../PizzaBlock/Skeleton';
+import { Categories } from '../Categories/Categories';
+import { Header } from '../Header/Header';
+import { Sort } from '../Sort/Sort';
+import { PizzaBlock, PizzaProps } from '../PizzaBlock/PizzaBlock';
+import { Skeleton } from '../PizzaBlock/Skeleton';
 import { useEffect, useState } from 'react';
 
-function App() {
+export const App = () => {
   const [collections, setCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -54,6 +54,4 @@ function App() {
       </div>
     </div>
   );
-}
-
-export default App;
+};

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Categories = () => {
+export const Categories = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const categories = [
@@ -28,5 +28,3 @@ const Categories = () => {
     </div>
   );
 };
-
-export default Categories;

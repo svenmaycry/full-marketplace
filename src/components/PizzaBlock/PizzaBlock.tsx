@@ -12,7 +12,13 @@ export interface PizzaProps {
   rating: number;
 }
 
-const PizzaBlock = ({ price, title, imageUrl, types, sizes }: PizzaProps) => {
+export const PizzaBlock = ({
+  price,
+  title,
+  imageUrl,
+  types,
+  sizes,
+}: PizzaProps) => {
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
 
@@ -66,5 +72,3 @@ const PizzaBlock = ({ price, title, imageUrl, types, sizes }: PizzaProps) => {
     </div>
   );
 };
-
-export default PizzaBlock;
