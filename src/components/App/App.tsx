@@ -1,6 +1,10 @@
-import { Home } from '../../pages/Home';
-import { Header } from '../Header/Header';
 import '../../scss/app.scss';
+
+import { Header } from '../Header/Header';
+import { Home } from '../../pages/Home/Home';
+import { NotFound } from '../../pages/NotFound/NotFound';
+import { Cart } from '../../pages/Cart/Cart';
+import { Routes, Route } from 'react-router-dom';
 
 export const App = () => {
   return (
@@ -8,7 +12,11 @@ export const App = () => {
       <Header />
       <div className="content">
         <div className="container">
-          <Home />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
         </div>
       </div>
     </div>

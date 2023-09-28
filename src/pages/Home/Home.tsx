@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Categories } from '../components/Categories/Categories';
-import { Sort } from '../components/Sort/Sort';
-import { Skeleton } from '../components/PizzaBlock/Skeleton';
-import { PizzaBlock, PizzaProps } from '../components/PizzaBlock/PizzaBlock';
+import { Categories } from '../../components/Categories/Categories';
+import { Sort } from '../../components/Sort/Sort';
+import { Skeleton } from '../../components/PizzaBlock/Skeleton';
+import { PizzaBlock, PizzaProps } from '../../components/PizzaBlock/PizzaBlock';
 
 export const Home = () => {
   const [collections, setCollections] = useState([]);
