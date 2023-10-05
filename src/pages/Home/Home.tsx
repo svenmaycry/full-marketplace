@@ -10,9 +10,22 @@ import {
 export const Home = () => {
   const [collections, setCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [categoryId, setCategoryId] = useState(0);
+  const [sortType, setSortType] = useState({
+    name: 'высокий рейтинг',
+    sortProperty: 'rating',
+  });
 
   useEffect(() => {
-    fetch(`https://6512cd7db8c6ce52b39641b2.mockapi.io/flowers`)
+    setIsLoading(true);
+
+    const sortBy = sortType.sortProperty.replace('-', '');
+    const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
+    const category = categoryId > 0 ? `category=${categoryId}` : '';
+
+    fetch(
+      `https://6512cd7db8c6ce52b39641b2.mockapi.io/flowers?${category}&sortBy=${sortBy}&order=${order}`
+    )
       .then((res) => res.json())
       .then((arr) => {
         setCollections(arr);
@@ -23,13 +36,19 @@ export const Home = () => {
       })
       .finally(() => setIsLoading(false));
     window.scrollTo(0, 0);
-  }, []);
+  }, [categoryId, sortType]);
 
   return (
     <div className="container">
       <div className="content__top">
-        <Categories />
-        <Sort />
+        <Categories
+          categoryId={categoryId}
+          onClickCategory={(idx: any) => setCategoryId(idx)}
+        />
+        <Sort
+          sortType={sortType}
+          onClickSort={(idx: any) => setSortType(idx)}
+        />
       </div>
       <h2 className="content__title">Все букеты</h2>
       <div className="content__items">
