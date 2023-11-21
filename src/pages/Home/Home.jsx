@@ -2,12 +2,9 @@ import { useEffect, useState } from 'react';
 import { Categories } from '../../components/Categories/Categories';
 import { Sort } from '../../components/Sort/Sort';
 import { Skeleton } from '../../components/FlowerBlock/Skeleton';
-import {
-  FlowerBlock,
-  FlowerProps,
-} from '../../components/FlowerBlock/FlowerBlock';
+import { FlowerBlock } from '../../components/FlowerBlock/FlowerBlock';
 
-export const Home = () => {
+export const Home = ({ searchValue }) => {
   const [collections, setCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [categoryId, setCategoryId] = useState(0);
@@ -22,9 +19,10 @@ export const Home = () => {
     const sortBy = sortType.sortProperty.replace('-', '');
     const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
     const category = categoryId > 0 ? `category=${categoryId}` : '';
+    const search = searchValue ? `&search=${searchValue}` : '';
 
     fetch(
-      `https://6512cd7db8c6ce52b39641b2.mockapi.io/flowers?${category}&sortBy=${sortBy}&order=${order}`
+      `https://6512cd7db8c6ce52b39641b2.mockapi.io/flowers?${category}&sortBy=${sortBy}&order=${order}${search}`
     )
       .then((res) => res.json())
       .then((arr) => {
@@ -36,25 +34,24 @@ export const Home = () => {
       })
       .finally(() => setIsLoading(false));
     window.scrollTo(0, 0);
-  }, [categoryId, sortType]);
+  }, [categoryId, sortType, searchValue]);
+
+  const skeletons = [...new Array(6)].map((_, idx) => <Skeleton key={idx} />);
 
   return (
     <div className="container">
       <div className="content__top">
         <Categories
           categoryId={categoryId}
-          onClickCategory={(idx: any) => setCategoryId(idx)}
+          onClickCategory={(idx) => setCategoryId(idx)}
         />
-        <Sort
-          sortType={sortType}
-          onClickSort={(idx: any) => setSortType(idx)}
-        />
+        <Sort sortType={sortType} onClickSort={(idx) => setSortType(idx)} />
       </div>
       <h2 className="content__title">Все букеты</h2>
       <div className="content__items">
         {isLoading
-          ? [...new Array(6)].map((_, idx) => <Skeleton key={idx} />)
-          : collections.map((item: FlowerProps) => (
+          ? skeletons
+          : collections.map((item) => (
               <FlowerBlock
                 price={item.price}
                 title={item.title}
