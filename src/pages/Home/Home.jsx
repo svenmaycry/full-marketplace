@@ -3,10 +3,12 @@ import { Categories } from '../../components/Categories/Categories';
 import { Sort } from '../../components/Sort/Sort';
 import { Skeleton } from '../../components/FlowerBlock/Skeleton';
 import { FlowerBlock } from '../../components/FlowerBlock/FlowerBlock';
+import { Pagination } from '../../components/Pagination/Pagination';
 
 export const Home = ({ searchValue }) => {
   const [collections, setCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
   const [categoryId, setCategoryId] = useState(0);
   const [sortType, setSortType] = useState({
     name: 'высокий рейтинг',
@@ -22,7 +24,7 @@ export const Home = ({ searchValue }) => {
     const search = searchValue ? `&search=${searchValue}` : '';
 
     fetch(
-      `https://6512cd7db8c6ce52b39641b2.mockapi.io/flowers?${category}&sortBy=${sortBy}&order=${order}${search}`
+      `https://6512cd7db8c6ce52b39641b2.mockapi.io/flowers?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}${search}`
     )
       .then((res) => res.json())
       .then((arr) => {
@@ -34,7 +36,7 @@ export const Home = ({ searchValue }) => {
       })
       .finally(() => setIsLoading(false));
     window.scrollTo(0, 0);
-  }, [categoryId, sortType, searchValue]);
+  }, [categoryId, sortType, searchValue, currentPage]);
 
   const skeletons = [...new Array(6)].map((_, idx) => <Skeleton key={idx} />);
 
@@ -65,6 +67,7 @@ export const Home = ({ searchValue }) => {
               />
             ))}
       </div>
+      <Pagination onChangePage={(number) => setCurrentPage(number)} />
     </div>
   );
 };
