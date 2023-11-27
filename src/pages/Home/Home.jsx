@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Categories } from '../../components/Categories/Categories';
 import { Sort } from '../../components/Sort/Sort';
 import { Skeleton } from '../../components/FlowerBlock/Skeleton';
 import { FlowerBlock } from '../../components/FlowerBlock/FlowerBlock';
 import { Pagination } from '../../components/Pagination/Pagination';
+import { SearchContext } from '../../components/App/App';
 
-export const Home = ({ searchValue }) => {
+export const Home = () => {
+  const { searchValue } = useContext(SearchContext);
   const [collections, setCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
