@@ -7,20 +7,28 @@ import { FlowerBlock } from '../../components/FlowerBlock/FlowerBlock';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { SearchContext } from '../../components/App/App';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCategoryId } from '../../redux/slices/filterSlice.js';
+import {
+  setCategoryId,
+  setCurrentPage,
+} from '../../redux/slices/filterSlice.js';
 
 export const Home = () => {
   const dispatch = useDispatch();
-  const { categoryId, sort } = useSelector((state) => state.filter);
+  const { categoryId, sort, currentPage } = useSelector(
+    (state) => state.filter
+  );
 
   const { searchValue } = useContext(SearchContext);
 
   const [collections, setCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
 
   const onClickCategory = (id) => {
     dispatch(setCategoryId(id));
+  };
+
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number));
   };
 
   useEffect(() => {
@@ -69,7 +77,7 @@ export const Home = () => {
               />
             ))}
       </div>
-      <Pagination onChangePage={(number) => setCurrentPage(number)} />
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
 };
