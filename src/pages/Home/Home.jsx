@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 import { Categories } from '../../components/Categories/Categories';
 import { Sort } from '../../components/Sort/Sort';
@@ -30,18 +31,15 @@ export const Home = () => {
     const category = categoryId > 0 ? `&category=${categoryId}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
 
-    fetch(
-      `https://6512cd7db8c6ce52b39641b2.mockapi.io/flowers?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}${search}`
-    )
-      .then((res) => res.json())
-      .then((arr) => {
-        setCollections(arr);
-      })
-      .catch((err) => {
-        console.warn(err);
-        alert('Ошибка при получении данных');
-      })
-      .finally(() => setIsLoading(false));
+    axios
+      .get(
+        `https://6512cd7db8c6ce52b39641b2.mockapi.io/flowers?page=${currentPage}&limit=4${category}&sortBy=${sortBy}&order=${order}${search}`
+      )
+      .then((res) => {
+        setCollections(res.data);
+        setIsLoading(false);
+      });
+
     window.scrollTo(0, 0);
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
