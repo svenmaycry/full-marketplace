@@ -1,19 +1,26 @@
 import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import qs from 'qs';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Categories } from '../../components/Categories/Categories';
-import { Sort } from '../../components/Sort/Sort';
+import { Sort, sortList } from '../../components/Sort/Sort';
 import { Skeleton } from '../../components/FlowerBlock/Skeleton';
 import { FlowerBlock } from '../../components/FlowerBlock/FlowerBlock';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { SearchContext } from '../../components/App/App';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   setCategoryId,
   setCurrentPage,
+  setFilters,
 } from '../../redux/slices/filterSlice.js';
 
 export const Home = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isSearch = useRef(false);
+  const isMounted = useRef(false);
+
   const { categoryId, sort, currentPage } = useSelector(
     (state) => state.filter
   );
@@ -31,7 +38,7 @@ export const Home = () => {
     dispatch(setCurrentPage(number));
   };
 
-  useEffect(() => {
+  const fetchFlowers = () => {
     setIsLoading(true);
 
     const sortBy = sort.sortProperty.replace('-', '');
@@ -47,8 +54,50 @@ export const Home = () => {
         setCollections(res.data);
         setIsLoading(false);
       });
+  };
 
+  // Если изменили параметры и был первый рендер
+  useEffect(() => {
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        sortProperty: sort.sortProperty,
+        categoryId,
+        currentPage,
+      });
+
+      navigate(`?${queryString}`);
+    }
+    isMounted.current = true;
+  }, [categoryId, sort.sortProperty, currentPage]);
+
+  // Если был первый рендер, то проверяем URL- параметры и сохраняем в redux
+  useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+
+      const sort = sortList.find(
+        (obj) => obj.sortProperty === params.sortProperty
+      );
+
+      dispatch(
+        setFilters({
+          ...params,
+          sort,
+        })
+      );
+      isSearch.current = true;
+    }
+  }, []);
+
+  // Если был первый рендер, то запрашиваем цветы
+  useEffect(() => {
     window.scrollTo(0, 0);
+
+    if (!isSearch.current) {
+      fetchFlowers();
+    }
+
+    isSearch.current = false;
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
   const skeletons = [...new Array(6)].map((_, idx) => <Skeleton key={idx} />);
