@@ -23,6 +23,20 @@ body {
 .content {
   padding: 40px 0;
 
+  &__error-info {
+   margin: 80px auto;
+   width: 580px;
+   text-align: center;
+   h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 0px 0px 10px 0px;
+   }
+   p {
+      font-size: 20px;
+   }
+  }
+
   &__title {
    font-weight: 800;
    font-size: 40px;
