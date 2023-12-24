@@ -1,11 +1,10 @@
 import qs from 'qs';
-import { useContext, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Categories } from '../../components/Categories/Categories';
 import { Sort, sortList } from '../../components/Sort/Sort';
 import { Skeleton } from '../../components/FlowerBlock/Skeleton';
 import { FlowerBlock } from '../../components/FlowerBlock/FlowerBlock';
 import { Pagination } from '../../components/Pagination/Pagination';
-import { SearchContext } from '../../components/App/App';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -26,9 +25,8 @@ export const Home = () => {
   const isMounted = useRef(false);
 
   const { items, status } = useSelector(selectFlowerData);
-  const { categoryId, sort, currentPage } = useSelector(selectFilter);
-
-  const { searchValue } = useContext(SearchContext);
+  const { categoryId, sort, currentPage, searchValue } =
+    useSelector(selectFilter);
 
   const onClickCategory = (id) => {
     dispatch(setCategoryId(id));
