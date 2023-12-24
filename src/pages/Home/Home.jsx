@@ -9,11 +9,15 @@ import { SearchContext } from '../../components/App/App';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
+  selectFilter,
   setCategoryId,
   setCurrentPage,
   setFilters,
 } from '../../redux/slices/filterSlice.js';
-import { fetchFlowers } from '../../redux/slices/flowersSlice';
+import {
+  fetchFlowers,
+  selectFlowerData,
+} from '../../redux/slices/flowersSlice';
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -21,10 +25,8 @@ export const Home = () => {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
 
-  const { items, status } = useSelector((state) => state.flowers);
-  const { categoryId, sort, currentPage } = useSelector(
-    (state) => state.filter
-  );
+  const { items, status } = useSelector(selectFlowerData);
+  const { categoryId, sort, currentPage } = useSelector(selectFilter);
 
   const { searchValue } = useContext(SearchContext);
 
