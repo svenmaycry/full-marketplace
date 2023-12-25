@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItem, selectCartItemById } from '../../redux/slices/cartSlice';
+import { Link } from 'react-router-dom';
 
 const typeNames = ['самовывоз', 'доставка'];
 
@@ -73,6 +74,11 @@ export const FlowerBlock = ({ price, title, imageUrl, types, sizes, id }) => {
           {addedCount > 0 && <i>{addedCount}</i>}
         </button>
       </div>
+      <Link to={`/flower/${id}`}>
+        <div className="flower-block__desc">
+          <button className="button">Описание товара</button>
+        </div>
+      </Link>
     </div>
   );
 };
