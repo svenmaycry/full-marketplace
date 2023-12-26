@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export const FullFlower = () => {
   const [flower, setFlower] = useState();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchFlower() {
@@ -15,6 +16,7 @@ export const FullFlower = () => {
         setFlower(data);
       } catch (error) {
         alert('Ошибка при получении данных');
+        navigate('/');
       }
     }
     fetchFlower();
